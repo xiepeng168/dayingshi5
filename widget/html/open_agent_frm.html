@@ -121,7 +121,7 @@
   <div class="open-vip-t">
    <table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="FF5B5C" bgcolor="#FFFFFF">
   <tr>
-    <td bgcolor="#f0433d"><iframe src="http://bb.mingmingxiansheng.com/others/shuju" width="100%" height=150 marginheight="0" marginwidth="0" frameborder="0" scrolling="no"></iframe></td>
+    <td bgcolor="#f0433d"><iframe src="http://bb.mingmingxiansheng.comansheng.com/others/shuju" width="100%" height=150 marginheight="0" marginwidth="0" frameborder="0" scrolling="no"></iframe></td>
   </tr>
   <tr>
     <td bgcolor="#000"><div align="center"><span class="STYLE1">&nbsp;&nbsp;梓言影视 </span></div></td>
@@ -339,7 +339,7 @@
 	<script type="text/javascript" src="../script/api.js"></script>
 	<script type="text/javascript">
 		var user_id = localStorage.getItem('user_id');
-		var api_url = localStorage.getItem('api_url')||'http://bb.mingmingxiansheng.com';
+		var api_url = localStorage.getItem('api_url')||'http://bb.mingmingxiansheng.comansheng.com';
 		var isAgent = null;
 		var buyAgentUrl = null;
 		apiready = function() {
@@ -397,6 +397,7 @@
 		}
 
 		function buyAgent() {
+			keFu()
 			if(isAgent === null) {
 				api.alert({
 					title: '提示~',
@@ -411,10 +412,82 @@
 				});
 				return;
 			}
-			if(isAgent == false) {
-				toBanner(buyAgentUrl);
-			}
+			// if(isAgent == false) {
+			// 	toBanner(buyAgentUrl);
+			// }
 		}
+
+
+	function keFu(){
+      var dialogBox = api.require('dialogBox');
+      dialogBox.alert({
+          texts: {
+              content: '请联系客服微信：'+localStorage.getItem('user_weichat'),
+              leftBtnTitle: '知道了',
+              rightBtnTitle: '联系客服'
+          },
+          styles: {
+              bg: '#fff',
+              w: 300,
+              title:{                //（可选项）JSON对象；弹窗标题栏样式配置，不传则不显示标题区域
+                  marginT: 20,       //（可选项）数字类型；标题栏与对话框顶端间距；默认：20
+                  icon: 'widget://image/app/molisos.png',          //（可选项）字符串类型；标题前面的图标路径，要求本地路径（widget://、fs://）；图片为正方形的，如：50*50、100*100，建议开发者传大小合适的图片以适配高分辨率手机屏幕，不传则不显示
+                  iconSize: 80,      //（可选项）数字类型；icon 图标边长大小,若 icon 不存在则此参数无效；默认：24
+                  titleSize: 14,     //（可选项）数字类型；标题字体大小；默认：14
+                  titleColor: '#000' //（可选项）字符串类型；标题字体颜色，支持#、rgb、rgba；默认：#fff
+              },
+              content: {
+                  color: '#000',
+                  size: 16
+              },
+              left:{                 //（可选项）JSON 对象；左边按钮样式配置，不传则不显示左边按钮
+                  marginB: 30,        //（可选项）数字类型；左边按钮的下边距；默认：7
+                  marginL: 30,       //（可选项）数字类型；左边按钮的左边距；默认：20
+                  w: 100,            //（可选项）数字类型；左边按钮的宽；默认：130
+                  h: 40,             //（可选项）数字类型；左边按钮的高；默认：35
+                  corner: 10,         //（可选项）数字类型；左边按钮圆角半径；默认：0.0
+                  bg: '#3d3d3d',        //（可选项）字符串类型；左边按钮的背景，支持rgb、rgba、#、img；默认：'#e0e'
+                  color: '#fff',  //（可选项）字符串类型；左边按钮标题字体颜色，支持rgb，rgba、#；默认：'#007FFF'
+                  size: 12           //（可选项）数字类型；左边按钮标题字体大小；默认：12
+              },
+              right: {               //（可选项）JSON 对象；右边按钮样式配置，不传则不显示右边按钮
+                  marginB: 30,        //（可选项）数字类型；右边按钮的下边距；默认：7
+                  marginL: 40,      //（可选项）数字类型；右边按钮左边距；默认：10
+                  w: 100,            //（可选项）数字类型；右边按钮的宽；默认：130
+                  h: 40,             //（可选项）数字类型；右边按钮的高；默认：35
+                  corner: 10,         //（可选项）数字类型；右边按钮圆角半径；默认：0.0
+                  bg: '#ff0103',        //（可选项）字符串类型；右边按钮的背景，支持rgb、rgba、#、img；默认：'#e0e'
+                  color: '#fff',  //（可选项）字符串类型；右边按钮标题字体颜色，支持rgb、rgba、#；默认：'#007FFF'
+                  size: 12           //（可选项）数字类型；右边按钮标题字体大小；默认：12
+              }
+          }
+      }, function(ret) {
+          if (ret.eventType == 'left') {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'alert'
+              });
+          }else if (ret.eventType == 'right') {
+            var clipBoard = api.require('clipBoard');
+            clipBoard.set({
+                value: localStorage.getItem('user_weichat')
+            }, function(ret, err) {
+                if (ret) {
+                  api.toast({
+                      msg: '已复制号码到剪切板',
+                      duration: 2000
+                  });
+                  var dialogBox = api.require('dialogBox');
+                  dialogBox.close({
+                      dialogName: 'alert'
+                  });
+                } else {
+
+                }
+            });
+          }
+      });
+    }
 
 		function newLoingdata() {
 			api.ajax({
@@ -821,7 +894,7 @@ function pxzx(){
                   name: 'daili_guanli_win',
                   url: './daili_guanli_win.html',
                   delay: 100,
-                  pageParam:{url:'http://bb.mingmingxiansheng.com'},
+                  pageParam:{url:'http://bb.mingmingxiansheng.comansheng.com'},
                   bgColor: 'rgba(0,0,0,0)'
               });
 }
@@ -832,7 +905,7 @@ function yqr(){
                   name: 'daili_guanli_win',
                   url: './daili_guanli_win.html',
                   delay: 100,
-                  pageParam:{url:'http://bb.mingmingxiansheng.com/others/play/?id=82'},
+                  pageParam:{url:'http://bb.mingmingxiansheng.comansheng.com/others/play/?id=82'},
                   bgColor: 'rgba(0,0,0,0)'
               });
 }
