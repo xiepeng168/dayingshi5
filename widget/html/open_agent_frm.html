@@ -397,7 +397,7 @@
 		}
 
 		function buyAgent() {
-			keFu()
+			
 			if(isAgent === null) {
 				api.alert({
 					title: '提示~',
@@ -412,9 +412,10 @@
 				});
 				return;
 			}
-			// if(isAgent == false) {
-			// 	toBanner(buyAgentUrl);
-			// }
+			if(isAgent == false) {
+				//toBanner(buyAgentUrl);
+				keFu()
+			}
 		}
 
 
