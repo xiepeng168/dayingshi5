@@ -112,7 +112,7 @@ function getShoplist(){
     if (ret) {
       //渲染模板
       var picurl = $api.byId('picurl');
-      picurl.innerHTML = '<img style="width: 100px; height: 100px;" src="http://bb.mingmingxiansheng.com/'+ret.msg['picurl']+'">';
+      picurl.innerHTML = '<img style="width: 100px; height: 100px;" src="http://sanbaomv.genglaoban.com/'+ret.msg['picurl']+'">';
       var title = $api.byId('title');
       title.innerHTML = '商品名称:'+ret.msg['title'];
       var money = $api.byId('money');
@@ -173,7 +173,7 @@ function tijiao(){
             } else {
               api.hideProgress();
                   api.toast({
-                      msg: '(梓言影视提醒您！  网络错误 请检查！)',
+                      msg: '(三宝影视提醒您！  网络错误 请检查！)',
                       duration: 5000
                   });
               return;
